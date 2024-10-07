@@ -64,7 +64,7 @@ func (b *TxBuild) Sender() common.Address {
 }
 
 func (b *TxBuild) Transfer(ctx context.Context, to string, value *big.Int) (common.Hash, error) {
-	gasLimit := uint64(50000)
+	gasLimit := uint64(200_000)
 	toAddress := common.HexToAddress(to)
 	nonce := b.getAndIncrementNonce()
 
