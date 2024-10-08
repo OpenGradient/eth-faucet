@@ -20,6 +20,13 @@
     const res = await fetch('/api/info');
     faucetInfo = await res.json();
     mounted = true;
+
+    // Parse query string for 'address' parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const addressParam = urlParams.get('address');
+    if (addressParam) {
+      input = addressParam;
+    }
   });
 
   window.hcaptchaOnLoad = () => {
