@@ -81,7 +81,10 @@ func (b *TxBuild) Transfer(ctx context.Context, to string, value *big.Int) (comm
 		return common.Hash{}, err
 	}
 
-	log.WithField("txn", unsignedTx).Info("Unsigned txn")
+	log.WithFields(log.Fields{
+		"gasPrice": unsignedTx.GasPrice(),
+		"gasLimit": unsignedTx.Gas(),
+	}).Info("Faucet txn details")
 
 	signedTx, err := types.SignTx(unsignedTx, b.signer, b.privateKey)
 	if err != nil {
