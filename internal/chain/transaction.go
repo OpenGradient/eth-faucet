@@ -128,6 +128,9 @@ func (b *TxBuild) buildLegacyTx(ctx context.Context, to *common.Address, value *
 		return nil, err
 	}
 
+	// multiply by 2
+	gasPrice.Mul(gasPrice, big.NewInt(2))
+
 	return types.NewTx(&types.LegacyTx{
 		Nonce:    nonce,
 		GasPrice: gasPrice,
@@ -155,10 +158,6 @@ func (b *TxBuild) refreshNonce(ctx context.Context) {
 }
 
 func checkEIP1559Support(client *ethclient.Client) (bool, error) {
-	header, err := client.HeaderByNumber(context.Background(), nil)
-	if err != nil {
-		return false, err
-	}
-
-	return header.BaseFee != nil && header.BaseFee.Cmp(big.NewInt(0)) > 0, nil
+	// hardcode no eip 1559
+	return false, nil
 }
