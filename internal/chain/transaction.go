@@ -134,7 +134,7 @@ func (b *TxBuild) buildLegacyTx(ctx context.Context, to *common.Address, value *
 	}
 
 	// Add 2
-	gasPrice.Add(gasPrice, big.NewInt(2))
+	gasPrice.Add(gasPrice, big.NewInt(20))
 
 	return types.NewTx(&types.LegacyTx{
 		Nonce:    nonce,
