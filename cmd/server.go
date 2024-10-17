@@ -18,21 +18,21 @@ import (
 
 var (
 	appVersion = "v1.2.0"
-	chainIDMap = map[string]int{"sepolia": 11155111, "holesky": 17000}
+	chainIDMap = map[string]int{"sepolia": 11155111, "holesky": 17000, "opengradient": 2970285607590380}
 
 	httpPortFlag = flag.Int("httpport", 8080, "Listener port to serve HTTP connection")
 	proxyCntFlag = flag.Int("proxycount", 0, "Count of reverse proxies in front of the server")
 	versionFlag  = flag.Bool("version", false, "Print version number")
 
-	payoutFlag   = flag.Float64("faucet.amount", 1, "Number of Ethers to transfer per user request")
-	intervalFlag = flag.Int("faucet.minutes", 1440, "Number of minutes to wait between funding rounds")
-	netnameFlag  = flag.String("faucet.name", "testnet", "Network name to display on the frontend")
+	payoutFlag   = flag.Float64("faucet.amount", 0.03, "Number of Ethers to transfer per user request")
+	intervalFlag = flag.Int("faucet.minutes", 300, "Number of minutes to wait between funding rounds")
+	netnameFlag  = flag.String("faucet.name", "opengradient", "Network name to display on the frontend")
 	symbolFlag   = flag.String("faucet.symbol", "ETH", "Token symbol to display on the frontend")
 
 	keyJSONFlag  = flag.String("wallet.keyjson", os.Getenv("KEYSTORE"), "Keystore file to fund user requests with")
 	keyPassFlag  = flag.String("wallet.keypass", "password.txt", "Passphrase text file to decrypt keystore")
 	privKeyFlag  = flag.String("wallet.privkey", os.Getenv("PRIVATE_KEY"), "Private key hex to fund user requests with")
-	providerFlag = flag.String("wallet.provider", os.Getenv("WEB3_PROVIDER"), "Endpoint for Ethereum JSON-RPC connection")
+	providerFlag = flag.String("wallet.provider", "http://18.218.115.248:8545", "Endpoint for Ethereum JSON-RPC connection")
 
 	hcaptchaSiteKeyFlag = flag.String("hcaptcha.sitekey", os.Getenv("HCAPTCHA_SITEKEY"), "hCaptcha sitekey")
 	hcaptchaSecretFlag  = flag.String("hcaptcha.secret", os.Getenv("HCAPTCHA_SECRET"), "hCaptcha secret")
