@@ -81,6 +81,8 @@ func (b *TxBuild) Transfer(ctx context.Context, to string, value *big.Int) (comm
 		return common.Hash{}, err
 	}
 
+	log.WithField("txn", unsignedTx).Info("Unsigned txn")
+
 	signedTx, err := types.SignTx(unsignedTx, b.signer, b.privateKey)
 	if err != nil {
 		return common.Hash{}, err
