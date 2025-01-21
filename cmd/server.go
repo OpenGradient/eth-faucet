@@ -18,7 +18,7 @@ import (
 
 var (
 	appVersion = "v1.2.0"
-	chainIDMap = map[string]int{"sepolia": 11155111, "holesky": 17000, "opengradient": 2970285607590380}
+	chainIDMap = map[string]int{"sepolia": 11155111, "holesky": 17000, "opengradient": 2970285607590380, "opengradient-testnet": 11820}
 
 	httpPortFlag = flag.Int("httpport", 8080, "Listener port to serve HTTP connection")
 	proxyCntFlag = flag.Int("proxycount", 0, "Count of reverse proxies in front of the server")
@@ -32,7 +32,7 @@ var (
 	keyJSONFlag  = flag.String("wallet.keyjson", os.Getenv("KEYSTORE"), "Keystore file to fund user requests with")
 	keyPassFlag  = flag.String("wallet.keypass", "password.txt", "Passphrase text file to decrypt keystore")
 	privKeyFlag  = flag.String("wallet.privkey", os.Getenv("PRIVATE_KEY"), "Private key hex to fund user requests with")
-	providerFlag = flag.String("wallet.provider", "http://18.218.115.248:8545", "Endpoint for Ethereum JSON-RPC connection")
+	providerFlag = flag.String("wallet.provider", "http://18.188.176.119:8545", "Endpoint for Ethereum JSON-RPC connection")
 
 	hcaptchaSiteKeyFlag = flag.String("hcaptcha.sitekey", os.Getenv("HCAPTCHA_SITEKEY"), "hCaptcha sitekey")
 	hcaptchaSecretFlag  = flag.String("hcaptcha.secret", os.Getenv("HCAPTCHA_SECRET"), "hCaptcha secret")
