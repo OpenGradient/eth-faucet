@@ -28,6 +28,6 @@ RUN apk add --no-cache ca-certificates
 
 COPY --from=backend /backend-build/eth-faucet /app/eth-faucet
 
-EXPOSE 8080
+EXPOSE 8090
 
 ENTRYPOINT ["/app/eth-faucet"]
