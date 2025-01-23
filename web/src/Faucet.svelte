@@ -134,7 +134,7 @@
               <span class="icon">
                 <i class="fa fa-bath" />
               </span>
-              <span><b>{faucetInfo.symbol} Faucet</b></span>
+              <span><b>OpenGradient Faucet</b></span>
             </a>
           </div>
           <div id="navbarMenu" class="navbar-menu">
@@ -142,12 +142,9 @@
               <span class="navbar-item">
                 <a
                   class="button is-white is-outlined"
-                  href="https://github.com/chainflag/eth-faucet"
+                  href="https://opengradient.ai"
                 >
-                  <span class="icon">
-                    <i class="fa fa-github" />
-                  </span>
-                  <span>View Source</span>
+                  <span>opengradient.ai</span>
                 </a>
               </span>
             </div>
@@ -195,9 +192,14 @@
 
 <style>
   .hero.is-info {
-    background:
-      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url('/background.jpg') no-repeat center center fixed;
+    background: linear-gradient(
+      135deg,
+      #40E0D0 0%,
+      #FF8C42 25%,
+      #FF5E78 50%,
+      #8B5CF6 75%,
+      #6366F1 100%
+    );
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
