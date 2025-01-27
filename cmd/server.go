@@ -21,7 +21,7 @@ var (
 	chainIDMap = map[string]int{"sepolia": 11155111, "holesky": 17000, "opengradient": 10744}
 
 	httpPortFlag = flag.Int("httpport", 8090, "Listener port to serve HTTP connection")
-	proxyCntFlag = flag.Int("proxycount", 0, "Count of reverse proxies in front of the server")
+	proxyCntFlag = flag.Int("proxycount", 1, "Count of reverse proxies in front of the server")
 	versionFlag  = flag.Bool("version", false, "Print version number")
 
 	payoutFlag   = flag.Float64("faucet.amount", 0.03, "Number of Ethers to transfer per user request")
