@@ -134,7 +134,7 @@
               <span class="icon">
                 <i class="fa fa-bath" />
               </span>
-              <span><b>OpenGradient Faucet</b></span>
+              <span><b>OpenGradient Devnet Faucet</b></span>
             </a>
           </div>
           <div id="navbarMenu" class="navbar-menu">
