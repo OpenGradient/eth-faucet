@@ -33,9 +33,7 @@
     hcaptchaLoaded = true;
   };
 
-  $: document.title = `${faucetInfo.symbol} ${capitalize(
-    faucetInfo.network,
-  )} Faucet`;
+  $: document.title = "OpenGradient Devnet Faucet";
 
   let widgetID;
   $: if (mounted && hcaptchaLoaded) {
