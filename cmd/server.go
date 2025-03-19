@@ -32,7 +32,7 @@ var (
 	keyJSONFlag  = flag.String("wallet.keyjson", os.Getenv("KEYSTORE"), "Keystore file to fund user requests with")
 	keyPassFlag  = flag.String("wallet.keypass", "password.txt", "Passphrase text file to decrypt keystore")
 	privKeyFlag  = flag.String("wallet.privkey", os.Getenv("PRIVATE_KEY"), "Private key hex to fund user requests with")
-	providerFlag = flag.String("wallet.provider", "http://18.188.176.119:8545", "Endpoint for Ethereum JSON-RPC connection")
+	providerFlag = flag.String("wallet.provider", "http://eth-devnet.opengradient.ai", "Endpoint for Ethereum JSON-RPC connection")
 
 	hcaptchaSiteKeyFlag = flag.String("hcaptcha.sitekey", os.Getenv("HCAPTCHA_SITEKEY"), "hCaptcha sitekey")
 	hcaptchaSecretFlag  = flag.String("hcaptcha.secret", os.Getenv("HCAPTCHA_SECRET"), "hCaptcha secret")
