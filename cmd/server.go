@@ -18,7 +18,7 @@ import (
 
 var (
 	appVersion = "v1.2.0"
-	chainIDMap = map[string]int{"sepolia": 11155111, "holesky": 17000, "opengradient": 10744}
+	chainIDMap = map[string]int{"sepolia": 11155111, "holesky": 17000, "opengradient": 10740}
 
 	httpPortFlag = flag.Int("httpport", 8090, "Listener port to serve HTTP connection")
 	proxyCntFlag = flag.Int("proxycount", 1, "Count of reverse proxies in front of the server")
@@ -27,12 +27,12 @@ var (
 	payoutFlag   = flag.Float64("faucet.amount", 0.03, "Number of Ethers to transfer per user request")
 	intervalFlag = flag.Int("faucet.minutes", 300, "Number of minutes to wait between funding rounds")
 	netnameFlag  = flag.String("faucet.name", "opengradient", "Network name to display on the frontend")
-	symbolFlag   = flag.String("faucet.symbol", "ETH", "Token symbol to display on the frontend")
+	symbolFlag   = flag.String("faucet.symbol", "OGETH", "Token symbol to display on the frontend")
 
 	keyJSONFlag  = flag.String("wallet.keyjson", os.Getenv("KEYSTORE"), "Keystore file to fund user requests with")
 	keyPassFlag  = flag.String("wallet.keypass", "password.txt", "Passphrase text file to decrypt keystore")
 	privKeyFlag  = flag.String("wallet.privkey", os.Getenv("PRIVATE_KEY"), "Private key hex to fund user requests with")
-	providerFlag = flag.String("wallet.provider", "https://eth-devnet.opengradient.ai", "Endpoint for Ethereum JSON-RPC connection")
+	providerFlag = flag.String("wallet.provider", "https://ogevmdevnet.opengradient.ai", "Endpoint for Ethereum JSON-RPC connection")
 
 	hcaptchaSiteKeyFlag = flag.String("hcaptcha.sitekey", os.Getenv("HCAPTCHA_SITEKEY"), "hCaptcha sitekey")
 	hcaptchaSecretFlag  = flag.String("hcaptcha.secret", os.Getenv("HCAPTCHA_SECRET"), "hCaptcha secret")
