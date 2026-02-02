@@ -11,7 +11,7 @@ jobs:
 
     env:
       ECS_CLUSTER: OpenGradient
-      ECS_SERVICE: opengradient-faucet
+      ECS_SERVICE: og-eth-faucet
       ECR_REPOSITORY: opengradient/eth-faucet
       IMAGE_TAG: latest
       AWS_REGION: us-east-2
@@ -46,7 +46,7 @@ jobs:
 
       - name: AWS LINKS TO VIEW DEPLOYMENT
         run: |
-          echo "View deployment progress here - https://us-east-2.console.aws.amazon.com/ecs/v2/clusters/OpenGradient/services/opengradient-faucet/tasks?region=us-east-2"
+          echo "View deployment progress here - https://us-east-2.console.aws.amazon.com/ecs/v2/clusters/OpenGradient/services/og-eth-faucet/tasks?region=us-east-2"
 
       - name: Wait for ECS service to stabilize
         run: |
