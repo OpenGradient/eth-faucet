@@ -33,7 +33,7 @@
     hcaptchaLoaded = true;
   };
 
-  $: document.title = capitalize(faucetInfo.network.replace('_', ' ')) + " Faucet";
+  $: document.title = "$" + faucetInfo.symbol + " Faucet on " + capitalize(faucetInfo.network.replace('_', ' '));
 
   let widgetID;
   $: if (mounted && hcaptchaLoaded) {
@@ -131,7 +131,7 @@
               <span class="icon">
                 <i class="fa fa-bath" />
               </span>
-              <span><b>{capitalize(faucetInfo.network.replace('_', ' '))} Faucet</b></span>
+              <span><b>${faucetInfo.symbol} Faucet on {capitalize(faucetInfo.network.replace('_', ' '))}</b></span>
             </a>
           </div>
           <div id="navbarMenu" class="navbar-menu">

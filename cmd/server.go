@@ -27,7 +27,7 @@ var (
 	payoutFlag     = flag.Float64("faucet.amount", 0.03, "Number of tokens to transfer per user request")
 	intervalFlag   = flag.Int("faucet.minutes", 300, "Number of minutes to wait between funding rounds")
 	netnameFlag    = flag.String("faucet.name", "base_sepolia", "Network name to display on the frontend")
-	symbolFlag     = flag.String("faucet.symbol", "TOKEN", "Token symbol to display on the frontend")
+	symbolFlag     = flag.String("faucet.symbol", "OPG", "Token symbol to display on the frontend")
 	tokenAddrFlag  = flag.String("faucet.tokenaddr", "0x240b09731D96979f50B2C649C9CE10FcF9C7987F", "ERC-20 token contract address to disperse (empty for native ETH)")
 
 	keyJSONFlag  = flag.String("wallet.keyjson", os.Getenv("KEYSTORE"), "Keystore file to fund user requests with")
