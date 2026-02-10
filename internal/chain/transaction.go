@@ -27,9 +27,10 @@ type TxBuild struct {
 	fromAddress     common.Address
 	nonce           uint64
 	supportsEIP1559 bool
+	tokenAddress    *common.Address
 }
 
-func NewTxBuilder(provider string, privateKey *ecdsa.PrivateKey, chainID *big.Int) (TxBuilder, error) {
+func NewTxBuilder(provider string, privateKey *ecdsa.PrivateKey, chainID *big.Int, tokenAddr string) (TxBuilder, error) {
 	client, err := ethclient.Dial(provider)
 	if err != nil {
 		return nil, err
@@ -54,6 +55,12 @@ func NewTxBuilder(provider string, privateKey *ecdsa.PrivateKey, chainID *big.In
 		fromAddress:     crypto.PubkeyToAddress(privateKey.PublicKey),
 		supportsEIP1559: supportsEIP1559,
 	}
+
+	if tokenAddr != "" {
+		addr := common.HexToAddress(tokenAddr)
+		txBuilder.tokenAddress = &addr
+	}
+
 	txBuilder.refreshNonce(context.Background())
 
 	return txBuilder, nil
@@ -68,13 +75,24 @@ func (b *TxBuild) Transfer(ctx context.Context, to string, value *big.Int) (comm
 	toAddress := common.HexToAddress(to)
 	nonce := b.getAndIncrementNonce()
 
+	// Determine transaction target and data based on whether this is an ERC-20 transfer
+	txTo := &toAddress
+	txValue := value
+	var txData []byte
+
+	if b.tokenAddress != nil {
+		txTo = b.tokenAddress
+		txValue = big.NewInt(0)
+		txData = buildERC20TransferData(toAddress, value)
+	}
+
 	var err error
 	var unsignedTx *types.Transaction
 
 	if b.supportsEIP1559 {
-		unsignedTx, err = b.buildEIP1559Tx(ctx, &toAddress, value, gasLimit, nonce)
+		unsignedTx, err = b.buildEIP1559Tx(ctx, txTo, txValue, gasLimit, nonce, txData)
 	} else {
-		unsignedTx, err = b.buildLegacyTx(ctx, &toAddress, value, gasLimit, nonce)
+		unsignedTx, err = b.buildLegacyTx(ctx, txTo, txValue, gasLimit, nonce, txData)
 	}
 
 	if err != nil {
@@ -101,7 +119,21 @@ func (b *TxBuild) Transfer(ctx context.Context, to string, value *big.Int) (comm
 	return signedTx.Hash(), nil
 }
 
-func (b *TxBuild) buildEIP1559Tx(ctx context.Context, to *common.Address, value *big.Int, gasLimit uint64, nonce uint64) (*types.Transaction, error) {
+// buildERC20TransferData constructs calldata for ERC-20 transfer(address,uint256)
+func buildERC20TransferData(to common.Address, amount *big.Int) []byte {
+	// Function selector: keccak256("transfer(address,uint256)") = 0xa9059cbb
+	methodID := []byte{0xa9, 0x05, 0x9c, 0xbb}
+	paddedAddress := common.LeftPadBytes(to.Bytes(), 32)
+	paddedAmount := common.LeftPadBytes(amount.Bytes(), 32)
+
+	var data []byte
+	data = append(data, methodID...)
+	data = append(data, paddedAddress...)
+	data = append(data, paddedAmount...)
+	return data
+}
+
+func (b *TxBuild) buildEIP1559Tx(ctx context.Context, to *common.Address, value *big.Int, gasLimit uint64, nonce uint64, data []byte) (*types.Transaction, error) {
 	header, err := b.client.HeaderByNumber(ctx, nil)
 	if err != nil {
 		return nil, err
@@ -124,10 +156,11 @@ func (b *TxBuild) buildEIP1559Tx(ctx context.Context, to *common.Address, value 
 		Gas:       gasLimit,
 		To:        to,
 		Value:     value,
+		Data:      data,
 	}), nil
 }
 
-func (b *TxBuild) buildLegacyTx(ctx context.Context, to *common.Address, value *big.Int, gasLimit uint64, nonce uint64) (*types.Transaction, error) {
+func (b *TxBuild) buildLegacyTx(ctx context.Context, to *common.Address, value *big.Int, gasLimit uint64, nonce uint64, data []byte) (*types.Transaction, error) {
 	gasPrice, err := b.client.SuggestGasPrice(ctx)
 	if err != nil {
 		return nil, err
@@ -142,6 +175,7 @@ func (b *TxBuild) buildLegacyTx(ctx context.Context, to *common.Address, value *
 		Gas:      gasLimit,
 		To:       to,
 		Value:    value,
+		Data:     data,
 	}), nil
 }
 
