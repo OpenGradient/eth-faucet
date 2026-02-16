@@ -24,7 +24,7 @@ var (
 	proxyCntFlag = flag.Int("proxycount", 1, "Count of reverse proxies in front of the server")
 	versionFlag  = flag.Bool("version", false, "Print version number")
 
-	payoutFlag     = flag.Float64("faucet.amount", 0.03, "Number of tokens to transfer per user request")
+	payoutFlag     = flag.Float64("faucet.amount", 0.1, "Number of tokens to transfer per user request")
 	intervalFlag   = flag.Int("faucet.minutes", 300, "Number of minutes to wait between funding rounds")
 	netnameFlag    = flag.String("faucet.name", "base_sepolia", "Network name to display on the frontend")
 	symbolFlag     = flag.String("faucet.symbol", "OPG", "Token symbol to display on the frontend")
