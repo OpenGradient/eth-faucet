@@ -184,6 +184,10 @@
         </div>
       </div>
     </div>
+
+    <div class="hero-foot has-text-centered" style="padding-bottom: 2rem;">
+      <a href="https://www.opengradient.ai/" target="_blank" rel="noopener" style="color: white; text-decoration: underline;">opengradient.ai</a>
+    </div>
   </section>
 </main>
 
