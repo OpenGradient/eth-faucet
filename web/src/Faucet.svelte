@@ -131,7 +131,7 @@
               <span class="icon">
                 <i class="fa fa-bath" />
               </span>
-              <span><b>${faucetInfo.symbol} Faucet on {capitalize(faucetInfo.network.replace('_', ' '))}</b></span>
+              <span><b>{faucetInfo.symbol} Faucet on {capitalize(faucetInfo.network.replace('_', ' '))}</b></span>
             </a>
           </div>
           <div id="navbarMenu" class="navbar-menu">
@@ -158,7 +158,7 @@
             {faucetInfo.symbol} per request
           </h1>
           <h2 class="subtitle">
-            Serving from {faucetInfo.account}
+            Use $OPG for <a href="https://docs.opengradient.ai/developers/" target="_blank" rel="noopener" style="color: white; text-decoration: underline;">x402 AI inference payments</a> on the OpenGradient network. Payments settle on Base Sepolia.
           </h2>
           <div id="hcaptcha" data-size="invisible"></div>
           <div class="box">
