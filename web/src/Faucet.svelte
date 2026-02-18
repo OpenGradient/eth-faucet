@@ -33,7 +33,7 @@
     hcaptchaLoaded = true;
   };
 
-  $: document.title = "OpenGradient Devnet Faucet";
+  $: document.title = "$" + faucetInfo.symbol + " Faucet on " + capitalize(faucetInfo.network.replace('_', ' '));
 
   let widgetID;
   $: if (mounted && hcaptchaLoaded) {
@@ -107,8 +107,7 @@
   }
 
   function capitalize(str) {
-    const lower = str.toLowerCase();
-    return str.charAt(0).toUpperCase() + lower.slice(1);
+    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   }
 </script>
 
@@ -132,7 +131,7 @@
               <span class="icon">
                 <i class="fa fa-bath" />
               </span>
-              <span><b>OpenGradient Devnet Faucet</b></span>
+              <span><b>${faucetInfo.symbol} Faucet on {capitalize(faucetInfo.network.replace('_', ' '))}</b></span>
             </a>
           </div>
           <div id="navbarMenu" class="navbar-menu">
@@ -140,9 +139,9 @@
               <span class="navbar-item">
                 <a
                   class="button is-white is-outlined"
-                  href="https://opengradient.ai"
+                  href="https://base.org"
                 >
-                  <span>opengradient.ai</span>
+                  <span>Base Sepolia</span>
                 </a>
               </span>
             </div>
